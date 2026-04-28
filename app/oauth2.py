@@ -7,16 +7,16 @@ from fastapi.security import OAuth2PasswordBearer   # 获取访问token的依赖
 from sqlalchemy.ext.asyncio import AsyncSession # 异步session注解
 from sqlalchemy import select   # 查询
 from . import schemas, models   # 模式, 模型
+from .config import settings   # 配置
 from .databases import get_db # 操作数据库
 
 # 定义令牌提取器，获取登录接口的令牌(自动获取)
 oath_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 
-SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
-
+SECRET_KEY = settings.secret_key    # 密钥
+ALGORITHM = settings.algorithm      # 算法
+ACCESS_TOKEN_EXPIRE_MINUTES = settings.access_token_expire_minutes  # 过期时间
 
 # 创建访问token, 声明是字典格式
 def create_access_token(data: dict):

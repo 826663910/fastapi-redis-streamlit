@@ -7,6 +7,9 @@ class Setting(BaseSettings):
     database_username: str    # 用户名
     database_password: str    # 密码
     database_name: str    # 数据库名称
+    secret_key: str    # 密钥
+    algorithm: str    # 算法
+    access_token_expire_minutes: int    # 访问令牌过期分钟数
 
     # 用于找到.env文件, 匹配到Settings类中
     model_config = SettingsConfigDict(
