@@ -4,8 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware  # cors中间件
 from .databases import init_db, engine  # 初始化数据库, 获取session, 引擎
 from .router import auth, posts, users
 
-
-
 # 在应用启动时, 调用init_db函数, 来执行create_all, 完成后自动关闭
 @asynccontextmanager
 async def lifespan(app: FastAPI):
